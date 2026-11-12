@@ -1,8 +1,14 @@
 name: Run Tests
-on: [push, pull_request]
+on:
+  workflow_dispatch:
+    inputs:
+      runner:
+        description: runs-on label for every job
+        default: ubuntu-latest
+
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.runner }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
